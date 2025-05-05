@@ -9,8 +9,13 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow only React app to make requests
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
+app.use(cors(corsOptions));
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
 
